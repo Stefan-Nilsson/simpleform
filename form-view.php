@@ -16,6 +16,7 @@
 </form>
 <div class="container">
     <h1>Order food "BreadyForU"</h1>
+    <h2> <div name="fillFields" class="form-control alert alert-danger"><?php echo ($fillAllFields)?></div></h2>
     <nav>
         <ul class="nav">
             <li class="nav-item">
@@ -31,6 +32,7 @@
             <div class="form-group col-md-6">
                 <label for="email">E-mail:</label>
                 <input type="text" id="email" name="email" class="form-control"/>
+                <div name="errorEmail" class="form-control alert alert-danger"><?php echo ($emailErr)?></div>
             </div>
             <div></div>
         </div>
@@ -41,20 +43,25 @@
                 <div class="form-group col-md-6">
                     <label for="street">Street:</label>
                     <input type="text" name="street" id="street" class="form-control">
+                    <div name="errorStreet" class="form-control alert alert-danger"><?php echo ($streetErr)?></div>
                 </div>
+
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Street number:</label>
                     <input type="text" id="streetnumber" name="streetnumber" class="form-control">
+                    <div name="errorStreetNumber" class="form-control alert alert-danger"><?php echo ($streetNumberErr)?></div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
                     <input type="text" id="city" name="city" class="form-control">
+                    <div name="errorCity" class="form-control alert alert-danger"><?php echo ($cityErr)?></div>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode</label>
                     <input type="text" id="zipcode" name="zipcode" class="form-control">
+                    <div name="errorZipcode" class="form-control alert alert-danger"><?php echo ($zipcodeErr)?></div>
                 </div>
             </div>
         </fieldset>

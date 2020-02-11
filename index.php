@@ -10,7 +10,7 @@ session_start();
 // $_POST['streetnumber'] = ('');
 // $_POST['zipcode'] = ('');
 // $_POST['email'] = ('');
-
+$fillAllFields = "";
 
 
 function whatIsHappening() {
@@ -56,7 +56,7 @@ if (isset($_POST['email']) && isset($_POST['streetnumber']) && isset($_POST['zip
         echo("</br>");
     } else {
         echo('Valid email please');
-        ('<input id="email" style="background-color: crimson"/>');
+        ('<input id="email');
         echo("</br>");
     }
     if (checkForNumber($_POST['streetnumber'])){
@@ -78,7 +78,7 @@ if (isset($_POST['email']) && isset($_POST['streetnumber']) && isset($_POST['zip
     }
 }
 else {
-    echo ('completely fill in all the forms');
+    $fillAllFields = ('Completely fill in all the forms');
 }
 
 $int = 100;
@@ -87,48 +87,53 @@ function checkForNumber ($inputValue){
 }
 
 
-function test_input($data) {
+function removeStuff($data) {
+    //
     $data = trim($data);
+    //
     $data = stripslashes($data);
+    //
     $data = htmlspecialchars($data);
+
     return $data;
 }
 
+
 // define variables and set to empty values
 
-$nameErr = $emailErr = $genderErr = $websiteErr = "";
+$emailErr = $streetErr = $streetNumberErr = $zipcodeErr = $cityErr = "";
 $name = $email = $gender = $comment = $website = "";
 // foreach ($_POST as $tempInput){
 // }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"])) {
-        echo ($nameErr = "Mail is required </br>");
+        $emailErr = "Mail is required </br>";
     } else {
-        $name = test_input($_POST["email"]);
+        $email = removeStuff($_POST["email"]);
     }
 
     if (empty($_POST["street"])) {
-        echo($emailErr = "Street is required</br>");
+        $streetErr = "Street is required";
     } else {
-        $email = test_input($_POST["street"]);
+        $street = removeStuff($_POST["street"]);
     }
 
     if (empty($_POST["streetnumber"])) {
-        echo($website = "Streetnumber is required</br>");
+        $streetNumberErr = "Streetnumber is required";
     } else {
-        $website = test_input($_POST["streetnumber"]);
+        $streetnumber = removeStuff($_POST["streetnumber"]);
     }
 
     if (empty($_POST["city"])) {
-        echo($comment = "City is required</br>");
+        $cityErr = "City is required";
     } else {
-        $comment = test_input($_POST["city"]);
+        $city = removeStuff($_POST["city"]);
     }
 
     if (empty($_POST["zipcode"])) {
-        echo($genderErr = "Zipcode is required</br>");
+        $zipcodeErr = "Zipcode is required";
     } else {
-        $gender = test_input($_POST["zipcode"]);
+        $zipcode = removeStuff($_POST["zipcode"]);
     }
 }
 
