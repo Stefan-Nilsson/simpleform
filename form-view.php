@@ -81,10 +81,10 @@
         </fieldset>
         <fieldset>
             <legend>Order type</legend>
-            <?php foreach ($orderTypes AS $i => $orderTypes): ?>
+            <?php foreach ($orderTypes AS $i => $orderType): ?>
                 <label>
-                    <input type="checkbox" value="1" name="orderTypes[<?php echo $i ?>]"/> <?php echo $orderTypes['name'] ?> -
-                    &euro; <?php echo number_format($orderTypes['price'], 2) ?></label><br />
+                    <input type="checkbox" value="1" name="orderTypes[<?php echo $i ?>]"/> <?php echo $orderType['name'] ?> -
+                    &euro; <?php echo number_format($orderType['price'], 2) ?></label><br />
             <?php endforeach; ?>
         </fieldset>
         <button type="submit" class="btn btn-primary">Order!</button>
