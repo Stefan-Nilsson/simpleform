@@ -11,9 +11,13 @@ session_start();
 // $_POST['zipcode'] = ('');
 // $_POST['email'] = ('');
 $fillAllFields = "";
+// define variables and set to empty values
 
+$emailErr = $streetErr = $streetNumberErr = $zipcodeErr = $cityErr = "";
+$name = $email = $gender = $comment = $website = "";
 
-function whatIsHappening() {
+function whatIsHappening()
+{
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
     echo '<h2>$_POST</h2>';
@@ -41,53 +45,49 @@ $products = [
 ];
 
 
-
-
-
-
-
-function validateEmail($mailValidation){
+function validateEmail($mailValidation)
+{
     return filter_var($mailValidation, FILTER_VALIDATE_EMAIL);
 }
+
 if (isset($_POST['email']) && isset($_POST['streetnumber']) && isset($_POST['zipcode']) && isset($_POST['street']) && isset($_POST['city'])) {
-
+    $fillAllFields = ('Some forms have value');
     if (validateEmail($_POST['email'])) {
-        echo('Somewhat valid mail');
-        echo("</br>");
+        $emailErr = 'Somewhat valid mail';
+
     } else {
-        echo('Valid email please');
-        ('<input id="email');
-        echo("</br>");
+        $emailErr = 'Valid email please';
+
+
     }
-    if (checkForNumber($_POST['streetnumber'])){
-        echo('You have entered a valid number');
-        echo("</br>");
-    }
-    else {
-        echo('Use a number in the streetnumber inputfield');
-        echo("</br>");
+    if (checkForNumber($_POST['streetnumber'])) {
+        $streetNumberErr = 'You have entered a valid number';
+
+    } else {
+        $streetNumberErr = 'Use a number in the streetnumber inputfield';
+
     }
 
-    if (checkForNumber($_POST['zipcode'])){
-        echo('You have entered a valid number');
-        echo("</br>");
+    if (checkForNumber($_POST['zipcode'])) {
+        $zipcodeErr = 'You have entered a valid number';
+
+    } else {
+        $zipcodeErr = 'Use a number in the zipcode inputfield';
+
     }
-    else {
-        echo('Use a number in the zipcode inputfield');
-        echo("</br>");
-    }
-}
-else {
+} else {
     $fillAllFields = ('Completely fill in all the forms');
 }
 
 $int = 100;
-function checkForNumber ($inputValue){
+function checkForNumber($inputValue)
+{
     return filter_var($inputValue, FILTER_VALIDATE_INT);
 }
 
 
-function removeStuff($data) {
+function removeStuff($data)
+{
     //
     $data = trim($data);
     //
@@ -99,41 +99,37 @@ function removeStuff($data) {
 }
 
 
-// define variables and set to empty values
-
-$emailErr = $streetErr = $streetNumberErr = $zipcodeErr = $cityErr = "";
-$name = $email = $gender = $comment = $website = "";
 // foreach ($_POST as $tempInput){
 // }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"])) {
         $emailErr = "Mail is required </br>";
     } else {
-        $email = removeStuff($_POST["email"]);
+        $_SESSION['email'] = $email = removeStuff($_POST["email"]);
     }
 
     if (empty($_POST["street"])) {
         $streetErr = "Street is required";
     } else {
-        $street = removeStuff($_POST["street"]);
+        $_SESSION['street'] = $street = removeStuff($_POST["street"]);
     }
 
     if (empty($_POST["streetnumber"])) {
         $streetNumberErr = "Streetnumber is required";
     } else {
-        $streetnumber = removeStuff($_POST["streetnumber"]);
+        $_SESSION['streetnumber'] = $streetnumber = removeStuff($_POST["streetnumber"]);
     }
 
     if (empty($_POST["city"])) {
         $cityErr = "City is required";
     } else {
-        $city = removeStuff($_POST["city"]);
+        $_SESSION['city'] = $city = removeStuff($_POST["city"]);
     }
 
     if (empty($_POST["zipcode"])) {
         $zipcodeErr = "Zipcode is required";
     } else {
-        $zipcode = removeStuff($_POST["zipcode"]);
+        $_SESSION['zipcode'] = $zipcode = removeStuff($_POST["zipcode"]);
     }
 }
 

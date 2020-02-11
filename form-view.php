@@ -31,7 +31,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail:</label>
-                <input type="text" id="email" name="email" class="form-control"/>
+                <input type="text" id="email" name="email" class="form-control" value="<?php echo ($email); ?>"/>
                 <div name="errorEmail" class="form-control alert alert-danger"><?php echo ($emailErr)?></div>
             </div>
             <div></div>
@@ -42,7 +42,7 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="street">Street:</label>
-                    <input type="text" name="street" id="street" class="form-control">
+                    <input type="text" name="street" id="street" class="form-control" value="<?php echo (); ?>">
                     <div name="errorStreet" class="form-control alert alert-danger"><?php echo ($streetErr)?></div>
                 </div>
 
