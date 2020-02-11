@@ -44,8 +44,11 @@ $products = [
     ['name' => 'Club Chicken', 'price' => 4],
     ['name' => 'Club Salmon', 'price' => 5]
 ];
-//Array of both arrays.
-
+//Array of order options.
+$orderTypes = [
+    ['name' => 'Normal delivery', 'price' => 5],
+    ['name' => 'Express delivery', 'price' => 10],
+];
 
 function validateEmail($mailValidation)
 {
@@ -175,8 +178,12 @@ else {
     $products = $productsDrinks;
 }
 
-//
-// echo date('H:i:s Y-m-d');
+// adds 2 hours to the current time
+$timeCalc2HoursAdded = date('H:i:s A', strtotime("+2 hours") );
+echo ($timeCalc2HoursAdded);
+// adds 45 min to the current time
+$timeCalc45minAdded = date('H:i:s A', strtotime("+45 minutes") );
+echo ($timeCalc45minAdded);
 require 'form-view.php';
 
 ?>

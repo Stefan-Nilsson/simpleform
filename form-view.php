@@ -14,6 +14,11 @@
     <input type="hidden" name="submitted">
     <button type="submit" class="btn btn-danger">Refresh</button>
 </form>
+
+<form method="post">
+    <input type="hidden" name="submitted">
+    <button type="submit" class="btn btn-danger">Normal Delivery</button>
+</form>
 <div class="container">
     <h1>Order food "BreadyForU"</h1>
     <h2> <div name="fillFields" class="form-control alert alert-danger"><?php echo ($fillAllFields)?></div></h2>
@@ -74,7 +79,14 @@
                     &euro; <?php echo number_format($product['price'], 2) ?></label><br />
             <?php endforeach; ?>
         </fieldset>
-
+        <fieldset>
+            <legend>Order type</legend>
+            <?php foreach ($orderTypes AS $i => $orderTypes): ?>
+                <label>
+                    <input type="checkbox" value="1" name="orderTypes[<?php echo $i ?>]"/> <?php echo $orderTypes['name'] ?> -
+                    &euro; <?php echo number_format($orderTypes['price'], 2) ?></label><br />
+            <?php endforeach; ?>
+        </fieldset>
         <button type="submit" class="btn btn-primary">Order!</button>
     </form>
 
