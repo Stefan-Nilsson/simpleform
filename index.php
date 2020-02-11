@@ -14,7 +14,8 @@ $fillAllFields = "";
 // define variables and set to empty values
 
 $emailErr = $streetErr = $streetNumberErr = $zipcodeErr = $cityErr = "";
-$name = $email = $gender = $comment = $website = "";
+$email = $street = $streetnumber = $city = $zipcode = "";
+$emailSession = $streetSession = $streetNumberSession = $citySession = $zipcodeSession = "";
 
 function whatIsHappening()
 {
@@ -105,41 +106,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"])) {
         $emailErr = "Mail is required </br>";
     } else {
-        $_SESSION['email'] = $email = removeStuff($_POST["email"]);
+        $_SESSION['email'] = $emailSession = removeStuff($_POST["email"]);
     }
 
     if (empty($_POST["street"])) {
         $streetErr = "Street is required";
     } else {
-        $_SESSION['street'] = $street = removeStuff($_POST["street"]);
+        $_SESSION['street'] = $streetSession = removeStuff($_POST["street"]);
     }
 
     if (empty($_POST["streetnumber"])) {
         $streetNumberErr = "Streetnumber is required";
     } else {
-        $_SESSION['streetnumber'] = $streetnumber = removeStuff($_POST["streetnumber"]);
+        $_SESSION['streetnumber'] = $streetNumberSession = removeStuff($_POST["streetnumber"]);
     }
 
     if (empty($_POST["city"])) {
         $cityErr = "City is required";
     } else {
-        $_SESSION['city'] = $city = removeStuff($_POST["city"]);
+        $_SESSION['city'] = $citySession = removeStuff($_POST["city"]);
     }
 
     if (empty($_POST["zipcode"])) {
         $zipcodeErr = "Zipcode is required";
     } else {
-        $_SESSION['zipcode'] = $zipcode = removeStuff($_POST["zipcode"]);
+        $_SESSION['zipcode'] = $zipcodeSession = removeStuff($_POST["zipcode"]);
     }
 }
 
 
 if (isset($_POST['submitted'])) {
     if ($_POST['submitted']) {
-        header('refresh');
-    }
-}
 
+
+// Unset all of the session variables.
+        $_SESSION = array();
+
+// If it's desired to kill the session, also delete the session cookie.
+// Note: This will destroy the session, and not just the session data!
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+            );
+        }
+    }
+// Finally, destroy the session.
+    session_destroy();
+// start new session
+    session_start();
+// refresh page
+    header('refresh');
+}
 whatIsHappening();
 
 
@@ -149,4 +168,4 @@ $totalValue = 0;
 // echo date('H:i:s Y-m-d');
 require 'form-view.php';
 
-
+?>
