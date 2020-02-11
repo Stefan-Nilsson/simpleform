@@ -10,6 +10,10 @@
     <title>Order food & drinks</title>
 </head>
 <body>
+<form method="post">
+    <input type="hidden" name="submitted">
+    <button type="submit" class="btn btn-danger">Refresh</button>
+</form>
 <div class="container">
     <h1>Order food "BreadyForU"</h1>
     <nav>
@@ -30,7 +34,6 @@
             </div>
             <div></div>
         </div>
-
         <fieldset>
             <legend>Address</legend>
 

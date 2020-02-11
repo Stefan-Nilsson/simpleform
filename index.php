@@ -7,6 +7,12 @@ error_reporting(E_ALL);
 //we are going to use session variables so we need to enable sessions
 session_start();
 
+// $_POST['streetnumber'] = ('');
+// $_POST['zipcode'] = ('');
+// $_POST['email'] = ('');
+
+
+
 function whatIsHappening() {
     echo '<h2>$_GET</h2>';
     var_dump($_GET);
@@ -34,6 +40,53 @@ $products = [
     ['name' => 'Ice-tea', 'price' => 3],
 ];
 
+
+
+
+
+
+
+function validateEmail($mailValidation){
+    return filter_var($mailValidation, FILTER_VALIDATE_EMAIL);
+}
+if (isset($_POST['email']) && isset($_POST['streetnumber']) && isset($_POST['zipcode']) && isset($_POST['street']) && isset($_POST['city'])) {
+
+    if (validateEmail($_POST['email'])) {
+        echo('Somewhat valid mail');
+        echo("</br>");
+    } else {
+        echo('Valid email please');
+        ('<input id="email" style="background-color: crimson"/>');
+        echo("</br>");
+    }
+    if (checkForNumber($_POST['streetnumber'])){
+        echo('You have entered a valid number');
+        echo("</br>");
+    }
+    else {
+        echo('Use a number in the streetnumber inputfield');
+        echo("</br>");
+    }
+
+    if (checkForNumber($_POST['zipcode'])){
+        echo('You have entered a valid number');
+        echo("</br>");
+    }
+    else {
+        echo('Use a number in the zipcode inputfield');
+        echo("</br>");
+    }
+}
+else {
+    echo ('completely fill in all the forms');
+}
+
+$int = 100;
+function checkForNumber ($inputValue){
+    return filter_var($inputValue, FILTER_VALIDATE_INT);
+}
+
+
 function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -45,9 +98,8 @@ function test_input($data) {
 
 $nameErr = $emailErr = $genderErr = $websiteErr = "";
 $name = $email = $gender = $comment = $website = "";
-foreach ($_POST as $tempInput){
-
-}
+// foreach ($_POST as $tempInput){
+// }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"])) {
         echo ($nameErr = "Mail is required </br>");
@@ -81,45 +133,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 
-
-
-
-function validateEmail($mailValidation){
-    return filter_var($mailValidation, FILTER_VALIDATE_EMAIL);
+if (isset($_POST['submitted'])) {
+    if ($_POST['submitted']) {
+        header('refresh');
+    }
 }
-if (validateEmail($_POST['email'])){
-    echo ('gege');
-}
-else {
-    echo ('Valid email please');
-}
-
-
-$int = 100;
-function checkForNumber ($inputValue){
-    return filter_var($inputValue, FILTER_VALIDATE_INT);
-}
-if (checkForNumber($_POST['streetnumber'])){
-    echo('you have entered a valid number');
-}
-else {
-    echo('fill in a number in your street number');
-}
-
-if (checkForNumber($_POST['zipcode'])){
-    echo('you have entered a valid number');
-}
-else {
-    echo('fill in a number in your zipcode');
-}
-// echo($_POST['email']);
 
 whatIsHappening();
 
 
 $totalValue = 0;
 
-
+//
+// echo date('H:i:s Y-m-d');
 require 'form-view.php';
 
 
