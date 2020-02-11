@@ -10,9 +10,9 @@ session_start();
 // $_POST['streetnumber'] = ('');
 // $_POST['zipcode'] = ('');
 // $_POST['email'] = ('');
-$fillAllFields = "";
-// define variables and set to empty values
 
+// define variables and set to empty values
+$fillAllFields = "";
 $emailErr = $streetErr = $streetNumberErr = $zipcodeErr = $cityErr = "";
 $email = $street = $streetnumber = $city = $zipcode = "";
 $emailSession = $streetSession = $streetNumberSession = $citySession = $zipcodeSession = "";
@@ -28,8 +28,15 @@ function whatIsHappening()
     echo '<h2>$_SESSION</h2>';
     var_dump($_SESSION);
 }
-
-//your products with their price.
+//your products with their price for food.
+$products = "";
+$productsDrinks = [
+    ['name' => 'Cola', 'price' => 2],
+    ['name' => 'Fanta', 'price' => 2],
+    ['name' => 'Sprite', 'price' => 2],
+    ['name' => 'Ice-tea', 'price' => 3],
+];
+//your products with their price for drinks.
 $products = [
     ['name' => 'Club Ham', 'price' => 3.20],
     ['name' => 'Club Cheese', 'price' => 3],
@@ -37,13 +44,7 @@ $products = [
     ['name' => 'Club Chicken', 'price' => 4],
     ['name' => 'Club Salmon', 'price' => 5]
 ];
-
-$products = [
-    ['name' => 'Cola', 'price' => 2],
-    ['name' => 'Fanta', 'price' => 2],
-    ['name' => 'Sprite', 'price' => 2],
-    ['name' => 'Ice-tea', 'price' => 3],
-];
+//Array of both arrays.
 
 
 function validateEmail($mailValidation)
@@ -163,6 +164,16 @@ whatIsHappening();
 
 
 $totalValue = 0;
+
+if (!isset($_GET['food'])){
+    $_GET['food'] = 1;
+}
+if ($_GET['food'] == 1){
+    $products = $products;
+}
+else {
+    $products = $productsDrinks;
+}
 
 //
 // echo date('H:i:s Y-m-d');
