@@ -15,10 +15,6 @@
     <button type="submit" class="btn btn-danger">Refresh</button>
 </form>
 
-<form method="post">
-    <input type="hidden" name="submitted">
-    <button type="submit" class="btn btn-danger">Normal Delivery</button>
-</form>
 <div class="container">
     <h1>Order food "BreadyForU"</h1>
     <h2> <div name="fillFields" class="form-control alert alert-danger"><?php echo ($fillAllFields)?></div></h2>
@@ -88,6 +84,11 @@
             <?php endforeach; ?>
         </fieldset>
         <button type="submit" class="btn btn-primary">Order!</button>
+        <?php
+        // whatIsHappening();
+
+        ?>
+
     </form>
 
     <footer>You already ordered <strong>&euro; <?php echo $totalValue ?></strong> in food and drinks.</footer>

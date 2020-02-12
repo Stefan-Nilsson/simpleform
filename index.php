@@ -85,12 +85,13 @@ if (isset($_POST['email']) && isset($_POST['streetnumber']) && isset($_POST['zip
 }
 
 $int = 100;
+// This checks if the input has a number or not
 function checkForNumber($inputValue)
 {
     return filter_var($inputValue, FILTER_VALIDATE_INT);
 }
 
-
+// This converts/parses some stuff so it can be read by the computer
 function removeStuff($data)
 {
     //
@@ -104,8 +105,10 @@ function removeStuff($data)
 }
 
 
-// foreach ($_POST as $tempInput){
-// }
+// If the server gets a post then do the things in the if else statements
+// These things mainly consist of checking if the field is empty or not
+// And if it is not empty storing it in my session variables
+// And parsing it through/with my removeStuff and Post variables
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["email"])) {
         $emailErr = "Mail is required </br>";
@@ -138,7 +141,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-
+// refresh button
 if (isset($_POST['submitted'])) {
     if ($_POST['submitted']) {
 
@@ -184,6 +187,25 @@ echo ($timeCalc2HoursAdded);
 // adds 45 min to the current time
 $timeCalc45minAdded = date('H:i:s A', strtotime("+45 minutes") );
 echo ($timeCalc45minAdded);
+echo ('<br>');
+/*
+foreach ($_POST['products'] as $key => $value) {
+$_POST['products'][$key] = $value
+echo;}
+*/
+
+$test = array_keys($_POST['products']);
+var_dump($test, $products[0]["price"]);
+//$products[0]['price'];
+foreach($test as $i){
+    var_dump($products[$i]["price"]);
+        //$totalValue= $products['$i']['price'] + $totalValue;
+    };
+
+
+
+
+
 require 'form-view.php';
 
 ?>
